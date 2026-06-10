@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexaHire Lite Mockup</title>
+  <style>
+    :root {
+      --navy: #07185f;
+      --blue: #0b5cff;
+      --light-blue: #eaf2ff;
+      --border: #b8d0ff;
+      --bg: #f7faff;
+      --text: #07185f;
+      --muted: #64748b;
+      --red: #dc2626;
+      --orange: #d97706;
+      --green: #15803d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--navy);
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 26px;
+    }
+
+    .role-switcher {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    select, button, input, textarea {
+      font-family: inherit;
+    }
+
+    select, input, textarea {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 10px;
+      background: white;
+      color: var(--text);
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      background: var(--blue);
+      color: white;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      background: var(--light-blue);
+      color: var(--blue);
+      border: 1px solid var(--border);
+    }
+
+    button.danger {
+      background: #fee2e2;
+      color: var(--red);
+      border: 1px solid #fecaca;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      min-height: calc(100vh - 79px);
+    }
+
+    nav {
+      background: white;
+      border-right: 1px solid var(--border);
+      padding: 24px 16px;
+    }
+
+    nav button {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 10px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid transparent;
+    }
+
+    nav button.active,
+    nav button:hover {
+      background: var(--light-blue);
+      border-color: var(--border);
+      color: var(--blue);
+    }
+
+    main {
+      padding: 28px;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      color: var(--navy);
+    }
+
+    .subtitle {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(150px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(11, 92, 255, 0.06);
+    }
+
+    .metric {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--blue);
+      margin-top: 8px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .table th,
+    .table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .table th {
+      background: var(--light-blue);
+      color: var(--blue);
+    }
+
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .badge.red {
+      color: var(--red);
+      background: #fee2e2;
+    }
+
+    .badge.orange {
+      color: var(--orange);
+      background: #ffedd5;
+    }
+
+    .badge.green {
+      color: var(--green);
+      background: #dcfce7;
+    }
+
+    .badge.blue {
+      color: var(--blue);
+      background: var(--light-blue);
+    }
+
+    .badge.gray {
+      color: #475569;
+      background: #f1f5f9;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(210px, 1fr));
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+    }
+
+    .column {
+      background: #f0f6ff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      min-height: 380px;
+    }
+
+    .column h3 {
+      margin: 4px 0 14px;
+      font-size: 15px;
+      color: var(--blue);
+    }
+
+    .candidate-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .candidate-card:hover {
+      outline: 2px solid var(--blue);
+    }
+
+    .candidate-id {
+      font-weight: 900;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .profile {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .field-list {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .field-list strong {
+      color: var(--muted);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      background: var(--light-blue);
+      color: var(--blue);
+      border: 1px solid var(--border);
+    }
+
+    .ai-box {
+      border-left: 5px solid var(--blue);
+      background: #f8fbff;
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 12px;
+      white-space: pre-wrap;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--navy);
+      color: white;
+      padding: 14px 18px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      display: none;
+      z-index: 20;
+    }
+
+    .warning {
+      border: 1px solid #fecaca;
+      background: #fff7f7;
+      color: var(--red);
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .compare-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .compare-toolbar label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .compare-toolbar select {
+      min-width: 220px;
+    }
+
+    .compare-table td.diff {
+      background: #fffbeb;
+      font-weight: 700;
+    }
+
+    .compare-table td.better {
+      background: #ecfdf5;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .compare-table td.weaker {
+      background: #fef2f2;
+      color: var(--red);
+    }
+
+    .compare-table td.label {
+      background: var(--light-blue);
+      color: var(--blue);
+      font-weight: 700;
+      width: 180px;
+    }
+
+    .compare-header {
+      text-align: center;
+      background: var(--light-blue);
+      color: var(--blue);
+    }
+
+    .header-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-search input {
+      min-width: 260px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .toolbar label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .comment-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .comment {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #fbfdff;
+    }
+
+    .comment-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .hidden-card {
+      display: none !important;
+    }
+
+    a.link {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: flex;
+        overflow-x: auto;
+        gap: 8px;
+      }
+
+      nav button {
+        white-space: nowrap;
+      }
+
+      .cards,
+      .grid-2,
+      .profile,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo-mark">N</div>
+      <div>
+        NexaHire Lite
+        <div class="small">Recruitment pipeline mockup</div>
+      </div>
+    </div>
+
+    <div class="header-search">
+      <input id="globalSearch" type="search" placeholder="Search candidates by ID, name, or role..." oninput="handleGlobalSearch()" onkeydown="if (event.key === 'Enter') openFirstSearchResult()" />
+      <button class="secondary" onclick="openFirstSearchResult()">Search</button>
+    </div>
+
+    <div class="role-switcher">
+      <label for="role">Viewing as:</label>
+      <select id="role" onchange="applyRolePermissions()">
+        <option value="hr">HR Recruiter</option>
+        <option value="interviewer">Technical Interviewer</option>
+        <option value="manager">Hiring Manager</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav>
+      <button class="active" data-screen="dashboard" data-roles="hr" onclick="showScreen('dashboard', this)">Dashboard</button>
+      <button data-screen="candidates" data-roles="hr" onclick="showScreen('candidates', this)">Candidates</button>
+      <button data-screen="pipeline" data-roles="hr,interviewer" onclick="showScreen('pipeline', this)">Pipeline</button>
+      <button data-screen="profile" data-roles="hr,interviewer,manager" onclick="openCandidate('C-117', this)">Candidate Profile</button>
+      <button data-screen="compare" data-roles="hr,interviewer,manager" onclick="showScreen('compare', this)">Compare Candidates</button>
+      <button data-screen="feedback" data-roles="hr,interviewer" onclick="showScreen('feedback', this)">Feedback Form</button>
+      <button data-screen="emails" data-roles="hr" onclick="showScreen('emails', this)">Email Templates</button>
+      <button data-screen="manager" data-roles="hr,manager" onclick="showScreen('manager', this)">Manager View</button>
+    </nav>
+
+    <main>
+      <section id="dashboard" class="screen active">
+        <h1>HR Dashboard</h1>
+        <p class="subtitle">One place to see active candidates, overdue feedback, and recruitment bottlenecks.</p>
+
+        <div class="cards">
+          <div class="card">
+            <strong>Active candidates</strong>
+            <div class="metric">6</div>
+          </div>
+          <div class="card">
+            <strong>Pending feedback</strong>
+            <div class="metric">2</div>
+          </div>
+          <div class="card">
+            <strong>Waiting too long</strong>
+            <div class="metric">1</div>
+          </div>
+          <div class="card">
+            <strong>Future-role candidates</strong>
+            <div class="metric">2</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2>Automatic reminders</h2>
+            <table class="table" id="remindersTable">
+              <tr>
+                <th>Candidate</th>
+                <th>Reminder</th>
+                <th>Due</th>
+                <th>Action</th>
+              </tr>
+              <tbody id="remindersBody"></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h2>Overdue actions</h2>
+            <table class="table">
+              <tr>
+                <th>Candidate</th>
+                <th>Issue</th>
+                <th>Action</th>
+              </tr>
+              <tr>
+                <td><strong>C-117</strong><br><span class="small">Consultant</span></td>
+                <td><span class="badge red">Feedback overdue</span><br>Interview happened 4 days ago.</td>
+                <td><button onclick="openCandidate('C-117')">Open</button></td>
+              </tr>
+              <tr>
+                <td><strong>C-104</strong><br><span class="small">AI Engineer</span></td>
+                <td><span class="badge orange">Waiting 5 days</span><br>Candidate needs interview invite.</td>
+                <td><button class="secondary" onclick="draftInviteFor('C-104')">Draft invite</button></td>
+              </tr>
+              <tr>
+                <td><strong>C-123</strong><br><span class="small">Project Manager</span></td>
+                <td><span class="badge blue">Decision needed</span><br>Manager should confirm decision.</td>
+                <td><button class="secondary" onclick="sendAutoReminder('C-123')">Remind</button></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="card">
+            <h2>Open roles</h2>
+            <table class="table">
+              <tr>
+                <th>Role</th>
+                <th>Openings</th>
+                <th>Priority</th>
+              </tr>
+              <tr>
+                <td>AI Engineer</td>
+                <td>4</td>
+                <td><span class="badge red">High</span></td>
+              </tr>
+              <tr>
+                <td>Consultant</td>
+                <td>3</td>
+                <td><span class="badge red">High</span></td>
+              </tr>
+              <tr>
+                <td>Project Manager</td>
+                <td>2</td>
+                <td><span class="badge orange">Medium</span></td>
+              </tr>
+              <tr>
+                <td>Data Analyst</td>
+                <td>1</td>
+                <td><span class="badge orange">Medium</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="candidates" class="screen">
+        <h1>Candidate Database</h1>
+        <p class="subtitle">Search, filter, add candidates, and import from LinkedIn.</p>
+
+        <div class="toolbar">
+          <div>
+            <label for="dbSearch">Search</label>
+            <input id="dbSearch" type="search" placeholder="ID, name, role..." oninput="renderCandidateDatabase()" />
+          </div>
+          <div>
+            <label for="dbRoleFilter">Filter by role</label>
+            <select id="dbRoleFilter" onchange="renderCandidateDatabase()">
+              <option value="">All roles</option>
+              <option>AI Engineer</option>
+              <option>Consultant</option>
+              <option>Project Manager</option>
+              <option>Data Analyst</option>
+            </select>
+          </div>
+          <div>
+            <label for="dbStageFilter">Filter by stage</label>
+            <select id="dbStageFilter" onchange="renderCandidateDatabase()">
+              <option value="">All stages</option>
+              <option>HR Screening</option>
+              <option>Technical Interview Pending</option>
+              <option>Technical Interview Completed</option>
+              <option>Final Interview</option>
+              <option>On Hold</option>
+              <option>Rejected</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2>All candidates</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Stage</th>
+                  <th>Owner</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="candidateDbBody"></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h2>Add candidate</h2>
+            <div class="form-grid">
+              <div class="full">
+                <label for="newName">Full name</label><br>
+                <input id="newName" type="text" style="width:100%;" placeholder="Jane Doe" />
+              </div>
+              <div>
+                <label for="newRole">Role</label><br>
+                <select id="newRole" style="width:100%;">
+                  <option>AI Engineer</option>
+                  <option>Consultant</option>
+                  <option>Project Manager</option>
+                  <option>Data Analyst</option>
+                </select>
+              </div>
+              <div>
+                <label for="newStage">Stage</label><br>
+                <select id="newStage" style="width:100%;">
+                  <option>HR Screening</option>
+                  <option>Technical Interview Pending</option>
+                  <option>Technical Interview Completed</option>
+                  <option>Final Interview</option>
+                  <option>On Hold</option>
+                </select>
+              </div>
+              <div class="full">
+                <label for="newLinkedinUrl">LinkedIn URL (optional)</label><br>
+                <input id="newLinkedinUrl" type="url" style="width:100%;" placeholder="https://linkedin.com/in/..." />
+              </div>
+              <div class="full">
+                <button onclick="addCandidate()">Add to database</button>
+                <button class="secondary" onclick="importLinkedInAsNew()">Import from LinkedIn URL</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pipeline" class="screen">
+        <h1>Candidate Pipeline</h1>
+        <p class="subtitle">Simple board showing stage, owner, next action, and blockers.</p>
+
+        <div style="margin-bottom: 18px;">
+          <label for="pipelineRoleFilter">Filter by role: </label>
+          <select id="pipelineRoleFilter" onchange="applyPipelineFilter()">
+            <option value="">All roles</option>
+            <option>AI Engineer</option>
+            <option>Consultant</option>
+            <option>Project Manager</option>
+            <option>Data Analyst</option>
+          </select>
+        </div>
+
+        <div class="pipeline">
+          <div class="column" data-roles="hr">
+            <h3>HR Screening</h3>
+            <div class="candidate-card" data-candidate-role="AI Engineer" onclick="openCandidate('C-104')">
+              <div class="candidate-id">C-104</div>
+              <strong>AI Engineer</strong>
+              <p class="small">Owner: HR Recruiter</p>
+              <span class="badge orange">Waiting 5 days</span>
+            </div>
+          </div>
+
+          <div class="column" data-roles="hr,interviewer">
+            <h3>Technical Interview Pending</h3>
+            <div class="candidate-card" data-candidate-role="Consultant" onclick="openCandidate('C-117')">
+              <div class="candidate-id">C-117</div>
+              <strong>Consultant</strong>
+              <p class="small">Owner: Technical Interviewer</p>
+              <span class="badge red">Feedback overdue</span>
+            </div>
+          </div>
+
+          <div class="column" data-roles="hr,interviewer">
+            <h3>Technical Interview Completed</h3>
+            <div class="candidate-card" data-candidate-role="AI Engineer" onclick="openCandidate('C-131')">
+              <div class="candidate-id">C-131</div>
+              <strong>AI Engineer</strong>
+              <p class="small">Owner: HR Recruiter</p>
+              <span class="badge orange">Feedback unclear</span>
+            </div>
+          </div>
+
+          <div class="column" data-roles="hr,manager">
+            <h3>Final Interview</h3>
+            <div class="candidate-card" data-candidate-role="Project Manager" onclick="openCandidate('C-123')">
+              <div class="candidate-id">C-123</div>
+              <strong>Project Manager</strong>
+              <p class="small">Owner: Hiring Manager</p>
+              <span class="badge blue">Decision needed</span>
+            </div>
+          </div>
+
+          <div class="column" data-roles="hr,manager">
+            <h3>On Hold / Talent Pool</h3>
+            <div class="candidate-card" data-candidate-role="Data Analyst" onclick="openCandidate('C-145')">
+              <div class="candidate-id">C-145</div>
+              <strong>Data Analyst</strong>
+              <p class="small">May fit future role</p>
+              <span class="badge gray">On hold</span>
+            </div>
+            <div class="candidate-card" data-candidate-role="AI Engineer" onclick="openCandidate('C-160')">
+              <div class="candidate-id">C-160</div>
+              <strong>AI Engineer</strong>
+              <p class="small">Strong, but not current seniority</p>
+              <span class="badge gray">Future opportunity</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile" class="screen">
+        <div class="toolbar" style="margin-bottom: 14px;">
+          <div>
+            <label for="profileCandidate">Candidate</label>
+            <select id="profileCandidate" onchange="openCandidateFromChooser()" style="min-width: 300px;"></select>
+          </div>
+        </div>
+
+        <h1 id="profileTitle">C-117 — Consultant</h1>
+        <p class="subtitle" id="profileSubtitle">Current stage: Technical Interview Pending · Next action: Submit feedback</p>
+
+        <div class="profile">
+          <div class="card">
+            <div id="profileWarning" class="warning">Feedback is overdue. Interview happened 4 days ago and no feedback has been submitted.</div>
+
+            <h2>Candidate profile</h2>
+            <div class="field-list">
+              <strong>Candidate ID</strong><span id="fieldId">C-117</span>
+              <strong>Role</strong><span id="fieldRole">Consultant</span>
+              <strong>Stage</strong><span id="fieldStage">Technical Interview Pending</span>
+              <strong>Owner</strong>
+              <div>
+                <span id="fieldOwner">Technical Interviewer</span>
+                <select id="ownerSelect" data-roles="hr" style="width:100%; display:none; margin-top:6px;" onchange="assignOwner()">
+                  <option>HR Recruiter</option>
+                  <option>Technical Interviewer</option>
+                  <option>Hiring Manager</option>
+                </select>
+              </div>
+              <strong>Next action</strong><span id="fieldAction">Submit feedback</span>
+              <strong>LinkedIn</strong><span id="fieldLinkedin">Available</span>
+              <strong>CV</strong><span id="fieldCv">Attached</span>
+              <strong class="hr-only">Salary expectations</strong><span class="hr-only">Confidential — HR only</span>
+              <strong class="hr-only">Private HR notes</strong><span class="hr-only">Candidate asked for update; handle carefully.</span>
+            </div>
+
+            <div class="full" style="margin-top: 18px;" data-roles="hr">
+              <label for="linkedinImportUrl">Import / update LinkedIn</label><br>
+              <div style="display:flex; gap:10px; margin-top:8px; flex-wrap:wrap;">
+                <input id="linkedinImportUrl" type="url" style="flex:1; min-width:220px;" placeholder="https://linkedin.com/in/..." />
+                <button class="secondary" onclick="importLinkedInProfile()">Import profile</button>
+              </div>
+            </div>
+
+            <h2 style="margin-top: 24px;">Notes and comments</h2>
+            <div id="commentList" class="comment-list"></div>
+            <div style="margin-top: 12px;">
+              <textarea id="newComment" placeholder="Add a note or comment..." style="min-height:70px;"></textarea>
+              <div style="margin-top: 8px;">
+                <button class="secondary" onclick="addComment()">Add comment</button>
+              </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+              <button data-roles="hr" onclick="sendActiveReminder()">Send reminder</button>
+              <button class="secondary" data-roles="hr,interviewer" onclick="showScreen('feedback')">Open feedback form</button>
+              <button class="secondary" data-roles="hr" onclick="draftEmail()">Draft candidate update</button>
+              <button class="secondary" data-roles="hr,interviewer,manager" onclick="openCompareWithActive()">Compare with another</button>
+            </div>
+          </div>
+
+          <div class="card" data-roles="hr">
+            <h2>AI Assistant</h2>
+            <p class="small">AI creates drafts and summaries. HR still approves everything.</p>
+            <label for="emailTemplate">Email template</label><br>
+            <select id="emailTemplate" style="width:100%; margin:8px 0 12px;">
+              <option value="update">Application update</option>
+              <option value="invite">Interview invite</option>
+              <option value="rejection">Polite rejection</option>
+              <option value="reminder">Internal reminder</option>
+            </select>
+            <button onclick="generateSummary()">Generate summary</button>
+            <button class="secondary" onclick="detectMissingData()">Check missing data</button>
+            <button class="secondary" onclick="draftEmail()">Generate AI email draft</button>
+
+            <div id="aiOutput" class="ai-box">Click an AI action to preview the output.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="compare" class="screen">
+        <h1>Compare Candidates</h1>
+        <p class="subtitle">Side-by-side view of stage, skills, and fit. HR-only fields stay hidden for other roles.</p>
+
+        <div class="card">
+          <div class="compare-toolbar">
+            <div>
+              <label for="compareA">Candidate A</label>
+              <select id="compareA" onchange="renderCompare()"></select>
+            </div>
+            <div>
+              <label for="compareB">Candidate B</label>
+              <select id="compareB" onchange="renderCompare()"></select>
+            </div>
+            <button onclick="renderCompare()">Compare</button>
+            <button class="secondary" data-roles="hr" onclick="generateCompareSummary()">Generate AI comparison</button>
+          </div>
+
+          <div id="compareWarning" class="warning" style="display:none;"></div>
+
+          <table class="table compare-table" id="compareTable">
+            <thead id="compareHead"></thead>
+            <tbody id="compareBody"></tbody>
+          </table>
+
+          <div id="compareOutput" class="ai-box" data-roles="hr">AI comparison summary will appear here.</div>
+        </div>
+      </section>
+
+      <section id="feedback" class="screen">
+        <h1>Technical Feedback Form</h1>
+        <p class="subtitle">Structured feedback replaces messy Jira comments.</p>
+
+        <div class="card">
+          <div class="form-grid">
+            <div>
+              <label>Technical skills</label><br>
+              <select style="width:100%;">
+                <option>4 / 5</option>
+                <option>3 / 5</option>
+                <option>2 / 5</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Communication</label><br>
+              <select style="width:100%;">
+                <option>3 / 5</option>
+                <option>4 / 5</option>
+                <option>5 / 5</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Seniority fit</label><br>
+              <select style="width:100%;">
+                <option>Mid-level</option>
+                <option>Junior</option>
+                <option>Senior</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Recommendation</label><br>
+              <select style="width:100%;">
+                <option>Move forward with caution</option>
+                <option>Move forward</option>
+                <option>Hold</option>
+                <option>Reject</option>
+              </select>
+            </div>
+
+            <div class="full">
+              <label>Raw interviewer notes</label>
+              <textarea id="rawNotes">Strong Python, used some ML libraries, not sure if production AI experience is strong. Communication was okay. Maybe good for AI Engineer but not senior.</textarea>
+            </div>
+
+            <div class="full">
+              <button onclick="cleanFeedback()">Generate AI feedback summary</button>
+              <button class="secondary" onclick="toast('Feedback submitted. HR has been notified.')">Approve and submit</button>
+            </div>
+
+            <div class="full">
+              <label>AI cleaned feedback</label>
+              <textarea id="cleanedFeedback" placeholder="AI output will appear here..."></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="emails" class="screen">
+        <h1>Email Templates</h1>
+        <p class="subtitle">Reusable templates with AI-generated drafts tailored to each candidate.</p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2>Template library</h2>
+            <div id="templateList"></div>
+          </div>
+
+          <div class="card">
+            <h2>Preview and send</h2>
+            <div class="form-grid">
+              <div class="full">
+                <label for="emailCandidate">Candidate</label><br>
+                <select id="emailCandidate" style="width:100%;" onchange="previewEmailTemplate()"></select>
+              </div>
+              <div class="full">
+                <label for="emailTemplatePick">Template</label><br>
+                <select id="emailTemplatePick" style="width:100%;" onchange="previewEmailTemplate()">
+                  <option value="update">Application update</option>
+                  <option value="invite">Interview invite</option>
+                  <option value="rejection">Polite rejection</option>
+                  <option value="reminder">Internal reminder</option>
+                </select>
+              </div>
+              <div class="full">
+                <button onclick="previewEmailTemplate()">Load template</button>
+                <button class="secondary" onclick="generateAiEmailDraft()">Generate AI draft</button>
+                <button class="secondary" onclick="toast('Email queued for HR approval (mock).')">Approve and send</button>
+              </div>
+              <div class="full">
+                <label for="emailPreview">Email preview</label>
+                <textarea id="emailPreview" style="min-height:220px;"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="manager" class="screen">
+        <h1>Manager View</h1>
+        <p class="subtitle">Role-level visibility without confidential HR-only details.</p>
+
+        <div class="card">
+          <h2>AI Engineer pipeline summary</h2>
+          <table class="table">
+            <tr>
+              <th>Candidate</th>
+              <th>Stage</th>
+              <th>Status</th>
+              <th>Next action</th>
+            </tr>
+            <tr>
+              <td>C-104</td>
+              <td>HR Screening</td>
+              <td><span class="badge orange">Waiting 5 days</span></td>
+              <td>HR sends interview invite</td>
+            </tr>
+            <tr>
+              <td>C-131</td>
+              <td>Technical Interview Completed</td>
+              <td><span class="badge orange">Feedback unclear</span></td>
+              <td>HR reviews feedback</td>
+            </tr>
+            <tr>
+              <td>C-160</td>
+              <td>Rejected / Talent Pool</td>
+              <td><span class="badge gray">Future opportunity</span></td>
+              <td>Store for future mid-level role</td>
+            </tr>
+          </table>
+
+          <div style="margin-top: 18px;">
+            <button onclick="managerSummary()">Generate role summary</button>
+          </div>
+
+          <div id="managerOutput" class="ai-box">Manager summary will appear here.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const OWNER_OPTIONS = ["HR Recruiter", "Technical Interviewer", "Hiring Manager"];
+
+    const emailTemplates = {
+      update: {
+        name: "Application update",
+        subject: "Update on your {{role}} application",
+        body: "Hi {{name}},\n\nThank you for your interest in the {{role}} position at NexaWorks Digital. We are currently at the \"{{stage}}\" stage and will update you soon.\n\nBest regards,\nNexaWorks Digital HR Team"
+      },
+      invite: {
+        name: "Interview invite",
+        subject: "Interview invitation — {{role}} at NexaWorks Digital",
+        body: "Hi {{name}},\n\nWe would like to invite you to a technical interview for the {{role}} role. Please share your availability for next week.\n\nBest regards,\nNexaWorks Digital HR Team"
+      },
+      rejection: {
+        name: "Polite rejection",
+        subject: "Update on your application — {{role}}",
+        body: "Hi {{name}},\n\nThank you for the time you invested in our {{role}} process. After careful review we will not move forward at this time. We encourage you to apply again for future openings.\n\nBest regards,\nNexaWorks Digital HR Team"
+      },
+      reminder: {
+        name: "Internal reminder",
+        subject: "Reminder: action needed for {{id}}",
+        body: "Internal reminder for {{owner}}:\n\nCandidate {{id}} ({{name}}) for {{role}} is at \"{{stage}}\". Next action: {{action}}.\n\nPlease complete this within 24 hours."
+      }
+    };
+
+    const candidateData = {
+      "C-104": {
+        name: "Alex Morgan",
+        role: "AI Engineer",
+        stage: "HR Screening",
+        owner: "HR Recruiter",
+        action: "Send interview invite",
+        warning: "Candidate has been waiting 5 days. HR should send an interview invite.",
+        linkedin: "Available",
+        linkedinUrl: "https://linkedin.com/in/alex-morgan-ai",
+        cv: "Attached",
+        experience: "4 years",
+        technical: 3,
+        communication: 4,
+        seniority: "Mid-level",
+        recommendation: "Not assessed yet",
+        strengths: "Solid ML fundamentals, good communication in screening call.",
+        concerns: "No technical interview yet; production AI experience unknown.",
+        salary: "€70k–€80k",
+        hrNotes: "Responsive candidate, flexible on start date.",
+        visibleTo: ["hr", "manager"],
+        comments: [
+          { author: "HR Recruiter", time: "2026-06-05 09:15", text: "Strong screening call. Moving to interview scheduling." }
+        ],
+        reminderDays: 5
+      },
+      "C-117": {
+        name: "Samira Khan",
+        role: "Consultant",
+        stage: "Technical Interview Pending",
+        owner: "Technical Interviewer",
+        action: "Submit feedback",
+        warning: "Feedback is overdue. Interview happened 4 days ago and no feedback has been submitted.",
+        linkedin: "Available",
+        linkedinUrl: "https://linkedin.com/in/samira-khan-consulting",
+        cv: "Attached",
+        experience: "6 years",
+        technical: 4,
+        communication: 3,
+        seniority: "Mid-level",
+        recommendation: "Pending feedback",
+        strengths: "Strong consulting background, client delivery experience.",
+        concerns: "Feedback overdue; technical depth not yet confirmed.",
+        salary: "€85k–€95k",
+        hrNotes: "Candidate asked for update; handle carefully.",
+        visibleTo: ["hr", "interviewer"],
+        comments: [
+          { author: "Technical Interviewer", time: "2026-06-06 11:00", text: "Interview completed. Need to submit structured feedback." },
+          { author: "HR Recruiter", time: "2026-06-09 08:30", text: "Reminder sent — feedback now overdue." }
+        ],
+        reminderDays: 4
+      },
+      "C-123": {
+        name: "Jordan Lee",
+        role: "Project Manager",
+        stage: "Final Interview",
+        owner: "Hiring Manager",
+        action: "Confirm decision",
+        warning: "Final interview completed. Hiring manager needs to confirm decision.",
+        linkedin: "Available",
+        linkedinUrl: "https://linkedin.com/in/jordan-lee-pm",
+        cv: "Attached",
+        experience: "8 years",
+        technical: 3,
+        communication: 5,
+        seniority: "Senior",
+        recommendation: "Move forward",
+        strengths: "Excellent stakeholder management, agile delivery track record.",
+        concerns: "Limited hands-on technical background for deeply technical teams.",
+        salary: "€95k–€105k",
+        hrNotes: "Manager liked culture fit; decision expected this week.",
+        visibleTo: ["hr", "manager"],
+        comments: [
+          { author: "Hiring Manager", time: "2026-06-08 16:45", text: "Final interview went well. Need to confirm offer decision." }
+        ],
+        reminderDays: 2
+      },
+      "C-131": {
+        name: "Priya Nair",
+        role: "AI Engineer",
+        stage: "Technical Interview Completed",
+        owner: "HR Recruiter",
+        action: "Review unclear feedback",
+        warning: "Feedback is written in Jira but is unclear. HR should clean and confirm it.",
+        linkedin: "Available",
+        linkedinUrl: "https://linkedin.com/in/priya-nair-ml",
+        cv: "Attached",
+        experience: "5 years",
+        technical: 4,
+        communication: 3,
+        seniority: "Mid-level",
+        recommendation: "Move forward with caution",
+        strengths: "Strong Python, ML libraries, practical problem solving.",
+        concerns: "Production AI experience unclear; communication only average.",
+        salary: "€78k–€88k",
+        hrNotes: "Interviewer notes need cleanup before manager review.",
+        visibleTo: ["hr", "interviewer", "manager"],
+        comments: [
+          { author: "Technical Interviewer", time: "2026-06-07 14:20", text: "Raw notes submitted in Jira — HR to clean up." }
+        ],
+        reminderDays: 3
+      },
+      "C-145": {
+        name: "Chris Weber",
+        role: "Data Analyst",
+        stage: "On Hold",
+        owner: "HR Recruiter",
+        action: "Decide whether to keep in talent pool",
+        warning: "Candidate may fit a future role.",
+        linkedin: "Available",
+        linkedinUrl: "https://linkedin.com/in/chris-weber-data",
+        cv: "Attached",
+        experience: "3 years",
+        technical: 3,
+        communication: 4,
+        seniority: "Junior",
+        recommendation: "Hold",
+        strengths: "Good SQL and dashboard skills, eager to grow.",
+        concerns: "Not enough seniority for current openings.",
+        salary: "€55k–€62k",
+        hrNotes: "Keep in pool for Q3 Data Analyst hire.",
+        visibleTo: ["hr", "manager"],
+        comments: [],
+        reminderDays: 0
+      },
+      "C-160": {
+        name: "Mika Tanaka",
+        role: "AI Engineer",
+        stage: "Rejected",
+        owner: "HR Recruiter",
+        action: "Store for future opportunity",
+        warning: "Strong candidate, but not fit for current seniority.",
+        linkedin: "Missing",
+        linkedinUrl: "",
+        cv: "Attached",
+        experience: "4 years",
+        technical: 4,
+        communication: 4,
+        seniority: "Mid-level",
+        recommendation: "Hold for future role",
+        strengths: "Strong fundamentals, good attitude, fast learner.",
+        concerns: "Not senior enough for current AI Engineer opening; LinkedIn missing.",
+        salary: "€72k–€78k",
+        hrNotes: "Good fit for future mid-level AI Engineer role.",
+        visibleTo: ["hr", "manager"],
+        comments: [
+          { author: "HR Recruiter", time: "2026-06-04 10:00", text: "Rejected for senior role; keep for mid-level pipeline." }
+        ],
+        reminderDays: 0
+      }
+    };
+
+    let activeCandidateId = "C-117";
+    let nextCandidateNum = 161;
+    let lastSearchResults = [];
+
+    function showScreen(screenId, navButton) {
+      const role = document.getElementById("role").value;
+      if (!roleCanAccess(role, SCREEN_ROLES[screenId])) {
+        ensureAllowedScreen(role);
+        return;
+      }
+
+      document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
+      document.getElementById(screenId).classList.add("active");
+
+      document.querySelectorAll("nav button").forEach(button => button.classList.remove("active"));
+      if (navButton) navButton.classList.add("active");
+
+      if (screenId === "compare") {
+        populateCompareSelects();
+        renderCompare();
+      }
+
+      if (screenId === "candidates") {
+        renderCandidateDatabase();
+      }
+
+      if (screenId === "emails") {
+        renderEmailTemplates();
+        populateEmailCandidateSelect();
+        previewEmailTemplate();
+      }
+
+      if (screenId === "dashboard") {
+        renderAutomaticReminders();
+      }
+    }
+
+    function openCandidate(candidateId, navButton) {
+      const role = document.getElementById("role").value;
+      if (!roleCanAccess(role, SCREEN_ROLES.profile)) {
+        ensureAllowedScreen(role);
+        return;
+      }
+
+      activeCandidateId = candidateId;
+      const c = candidateData[candidateId];
+
+      document.getElementById("profileTitle").innerText = candidateId + " — " + c.name + " (" + c.role + ")";
+      document.getElementById("profileSubtitle").innerText = "Current stage: " + c.stage + " · Next action: " + c.action;
+      document.getElementById("profileWarning").innerText = c.warning;
+      document.getElementById("fieldId").innerText = candidateId;
+      document.getElementById("fieldRole").innerText = c.role;
+      document.getElementById("fieldStage").innerText = c.stage;
+      document.getElementById("fieldAction").innerText = c.action;
+
+      const ownerSelect = document.getElementById("ownerSelect");
+      const fieldOwner = document.getElementById("fieldOwner");
+      ownerSelect.value = c.owner;
+      fieldOwner.innerText = c.owner;
+
+      const linkedinEl = document.getElementById("fieldLinkedin");
+      if (c.linkedinUrl) {
+        linkedinEl.innerHTML = "<a class=\"link\" href=\"" + c.linkedinUrl + "\" target=\"_blank\" rel=\"noopener\">Open LinkedIn profile</a>";
+      } else {
+        linkedinEl.innerText = c.linkedin;
+      }
+
+      document.getElementById("fieldCv").innerText = c.cv;
+      document.getElementById("linkedinImportUrl").value = c.linkedinUrl || "";
+      document.getElementById("aiOutput").innerText = "Click an AI action to preview the output.";
+      renderComments(candidateId);
+      populateProfileCandidateSelect();
+
+      showScreen("profile", navButton);
+      applyRolePermissions();
+    }
+
+    function populateProfileCandidateSelect() {
+      const role = document.getElementById("role").value;
+      const select = document.getElementById("profileCandidate");
+      if (!select) {
+        return;
+      }
+
+      const visibleIds = getVisibleCandidateIds(role);
+      select.innerHTML = "";
+
+      visibleIds.forEach(id => {
+        const c = candidateData[id];
+        select.add(new Option(id + " — " + c.name + " (" + c.role + ")", id));
+      });
+
+      if (visibleIds.includes(activeCandidateId)) {
+        select.value = activeCandidateId;
+      } else if (visibleIds.length) {
+        select.value = visibleIds[0];
+      }
+    }
+
+    function openCandidateFromChooser() {
+      const candidateId = document.getElementById("profileCandidate").value;
+      if (!candidateId || candidateId === activeCandidateId) {
+        return;
+      }
+
+      const navButton = document.querySelector('nav button[data-screen="profile"]');
+      openCandidate(candidateId, navButton);
+    }
+
+    const SCREEN_ROLES = {
+      dashboard: "hr",
+      candidates: "hr",
+      pipeline: "hr,interviewer",
+      profile: "hr,interviewer,manager",
+      compare: "hr,interviewer,manager",
+      feedback: "hr,interviewer",
+      emails: "hr",
+      manager: "hr,manager"
+    };
+
+    const ROLE_DEFAULT_SCREEN = {
+      hr: "dashboard",
+      interviewer: "pipeline",
+      manager: "manager"
+    };
+
+    let lastAppliedRole = null;
+
+    function roleCanAccess(role, allowedRoles) {
+      return allowedRoles.split(",").map(r => r.trim()).includes(role);
+    }
+
+    function applyRolePermissions() {
+      const role = document.getElementById("role").value;
+
+      document.querySelectorAll(".hr-only").forEach(el => {
+        el.style.display = role === "hr" ? "" : "none";
+      });
+
+      const ownerSelect = document.getElementById("ownerSelect");
+      const fieldOwner = document.getElementById("fieldOwner");
+      if (ownerSelect && fieldOwner) {
+        if (role === "hr") {
+          ownerSelect.style.display = "";
+          fieldOwner.style.display = "none";
+        } else {
+          ownerSelect.style.display = "none";
+          fieldOwner.style.display = "";
+        }
+      }
+
+      document.querySelectorAll("[data-roles]").forEach(el => {
+        const allowed = el.getAttribute("data-roles");
+        el.style.display = roleCanAccess(role, allowed) ? "" : "none";
+      });
+
+      populateCompareSelects();
+      populateProfileCandidateSelect();
+      if (document.getElementById("profile").classList.contains("active")) {
+        const visibleIds = getVisibleCandidateIds(role);
+        if (visibleIds.length && !visibleIds.includes(activeCandidateId)) {
+          const navButton = document.querySelector('nav button[data-screen="profile"]');
+          openCandidate(visibleIds[0], navButton);
+          return;
+        }
+      }
+
+      if (document.getElementById("compare").classList.contains("active")) {
+        renderCompare();
+      }
+
+      ensureAllowedScreen(role);
+
+      if (lastAppliedRole !== role) {
+        if (role === "manager") {
+          toast("Manager view: HR confidential fields and other roles' screens are hidden.");
+        } else if (role === "interviewer") {
+          toast("Interviewer view: HR dashboard, manager view, and confidential fields are hidden.");
+        }
+        lastAppliedRole = role;
+      }
+    }
+
+    function ensureAllowedScreen(role) {
+      const activeScreen = document.querySelector(".screen.active");
+      const activeId = activeScreen ? activeScreen.id : null;
+
+      if (activeId && roleCanAccess(role, SCREEN_ROLES[activeId])) {
+        return;
+      }
+
+      const targetScreen = ROLE_DEFAULT_SCREEN[role];
+      const navButton = document.querySelector(`nav button[data-screen="${targetScreen}"]`);
+
+      showScreen(targetScreen, navButton);
+    }
+
+    function getVisibleCandidateIds(role) {
+      return Object.keys(candidateData).filter(id => candidateData[id].visibleTo.includes(role));
+    }
+
+    function searchCandidates(query, role) {
+      const q = (query || "").trim().toLowerCase();
+      const ids = role ? getVisibleCandidateIds(role) : Object.keys(candidateData);
+
+      if (!q) {
+        return ids;
+      }
+
+      return ids.filter(id => {
+        const c = candidateData[id];
+        return id.toLowerCase().includes(q) ||
+          c.name.toLowerCase().includes(q) ||
+          c.role.toLowerCase().includes(q) ||
+          c.stage.toLowerCase().includes(q);
+      });
+    }
+
+    function handleGlobalSearch() {
+      const role = document.getElementById("role").value;
+      lastSearchResults = searchCandidates(document.getElementById("globalSearch").value, role);
+    }
+
+    function openFirstSearchResult() {
+      handleGlobalSearch();
+      if (lastSearchResults.length === 0) {
+        toast("No candidates matched your search.");
+        return;
+      }
+
+      openCandidate(lastSearchResults[0]);
+      toast("Opened " + lastSearchResults[0] + ".");
+    }
+
+    function applyPipelineFilter() {
+      const roleFilter = document.getElementById("pipelineRoleFilter").value;
+
+      document.querySelectorAll(".candidate-card").forEach(card => {
+        const match = !roleFilter || card.getAttribute("data-candidate-role") === roleFilter;
+        card.classList.toggle("hidden-card", !match);
+      });
+    }
+
+    function renderCandidateDatabase() {
+      const query = document.getElementById("dbSearch").value;
+      const roleFilter = document.getElementById("dbRoleFilter").value;
+      const stageFilter = document.getElementById("dbStageFilter").value;
+      const body = document.getElementById("candidateDbBody");
+
+      let ids = searchCandidates(query, "hr");
+
+      if (roleFilter) {
+        ids = ids.filter(id => candidateData[id].role === roleFilter);
+      }
+
+      if (stageFilter) {
+        ids = ids.filter(id => candidateData[id].stage === stageFilter);
+      }
+
+      body.innerHTML = ids.map(id => {
+        const c = candidateData[id];
+        return "<tr>" +
+          "<td><strong>" + id + "</strong></td>" +
+          "<td>" + c.name + "</td>" +
+          "<td>" + c.role + "</td>" +
+          "<td>" + c.stage + "</td>" +
+          "<td>" + c.owner + "</td>" +
+          "<td><button class=\"secondary\" onclick=\"openCandidate('" + id + "')\">Open</button></td>" +
+        "</tr>";
+      }).join("");
+    }
+
+    function defaultCandidateFields(name, role, stage, linkedinUrl) {
+      return {
+        name: name,
+        role: role,
+        stage: stage,
+        owner: "HR Recruiter",
+        action: "Review new application",
+        warning: "New candidate added to the database.",
+        linkedin: linkedinUrl ? "Available" : "Missing",
+        linkedinUrl: linkedinUrl || "",
+        cv: "Attached",
+        experience: "Not set",
+        technical: 0,
+        communication: 0,
+        seniority: "Not assessed",
+        recommendation: "Not assessed yet",
+        strengths: "Imported profile — review manually.",
+        concerns: "New entry — validate CV and LinkedIn.",
+        salary: "Not disclosed",
+        hrNotes: "Added via candidate database.",
+        visibleTo: ["hr", "manager"],
+        comments: [],
+        reminderDays: 0
+      };
+    }
+
+    function addCandidate() {
+      const name = document.getElementById("newName").value.trim();
+      const role = document.getElementById("newRole").value;
+      const stage = document.getElementById("newStage").value;
+      const linkedinUrl = document.getElementById("newLinkedinUrl").value.trim();
+
+      if (!name) {
+        toast("Enter a candidate name first.");
+        return;
+      }
+
+      const id = "C-" + nextCandidateNum++;
+      candidateData[id] = defaultCandidateFields(name, role, stage, linkedinUrl);
+      renderCandidateDatabase();
+      populateCompareSelects();
+      populateEmailCandidateSelect();
+      toast(id + " added to candidate database.");
+      openCandidate(id);
+    }
+
+    function importLinkedInAsNew() {
+      const linkedinUrl = document.getElementById("newLinkedinUrl").value.trim();
+      if (!linkedinUrl) {
+        toast("Paste a LinkedIn URL to import.");
+        return;
+      }
+
+      const slug = linkedinUrl.split("/").filter(Boolean).pop() || "candidate";
+      const name = slug.replace(/-/g, " ").replace(/\b\w/g, ch => ch.toUpperCase());
+      document.getElementById("newName").value = name;
+      addCandidate();
+    }
+
+    function importLinkedInProfile() {
+      const linkedinUrl = document.getElementById("linkedinImportUrl").value.trim();
+      if (!linkedinUrl) {
+        toast("Paste a LinkedIn URL first.");
+        return;
+      }
+
+      const c = candidateData[activeCandidateId];
+      c.linkedinUrl = linkedinUrl;
+      c.linkedin = "Available";
+
+      if (!c.name || c.name === "Imported Candidate") {
+        const slug = linkedinUrl.split("/").filter(Boolean).pop() || "candidate";
+        c.name = slug.replace(/-/g, " ").replace(/\b\w/g, ch => ch.toUpperCase());
+      }
+
+      addCommentText("HR Recruiter", "LinkedIn profile imported/updated from URL.");
+      toast("LinkedIn profile imported (mock).");
+      openCandidate(activeCandidateId);
+    }
+
+    function assignOwner() {
+      const owner = document.getElementById("ownerSelect").value;
+      candidateData[activeCandidateId].owner = owner;
+      document.getElementById("fieldOwner").innerText = owner;
+      addCommentText("HR Recruiter", "Owner reassigned to " + owner + ".");
+      renderCandidateDatabase();
+      toast("Owner updated to " + owner + ".");
+    }
+
+    function renderComments(candidateId) {
+      const list = document.getElementById("commentList");
+      const comments = candidateData[candidateId].comments || [];
+
+      if (comments.length === 0) {
+        list.innerHTML = "<p class=\"small\">No comments yet.</p>";
+        return;
+      }
+
+      list.innerHTML = comments.map(comment =>
+        "<div class=\"comment\">" +
+          "<div class=\"comment-meta\">" + comment.author + " · " + comment.time + "</div>" +
+          "<div>" + comment.text + "</div>" +
+        "</div>"
+      ).join("");
+    }
+
+    function addCommentText(author, text) {
+      if (!candidateData[activeCandidateId].comments) {
+        candidateData[activeCandidateId].comments = [];
+      }
+
+      candidateData[activeCandidateId].comments.push({
+        author: author,
+        time: new Date().toISOString().slice(0, 16).replace("T", " "),
+        text: text
+      });
+    }
+
+    function addComment() {
+      const text = document.getElementById("newComment").value.trim();
+      if (!text) {
+        toast("Write a comment first.");
+        return;
+      }
+
+      const role = document.getElementById("role").value;
+      const authorMap = {
+        hr: "HR Recruiter",
+        interviewer: "Technical Interviewer",
+        manager: "Hiring Manager"
+      };
+
+      addCommentText(authorMap[role] || "User", text);
+      document.getElementById("newComment").value = "";
+      renderComments(activeCandidateId);
+      toast("Comment added.");
+    }
+
+    function renderAutomaticReminders() {
+      const body = document.getElementById("remindersBody");
+      if (!body) {
+        return;
+      }
+
+      const rows = Object.keys(candidateData).map(id => {
+        const c = candidateData[id];
+        if (!c.reminderDays || c.reminderDays <= 0) {
+          return null;
+        }
+
+        let reminderType = "Follow up required";
+        if (c.action.toLowerCase().includes("feedback")) {
+          reminderType = "Auto-reminder: submit feedback";
+        } else if (c.action.toLowerCase().includes("invite")) {
+          reminderType = "Auto-reminder: send interview invite";
+        } else if (c.action.toLowerCase().includes("decision")) {
+          reminderType = "Auto-reminder: confirm decision";
+        }
+
+        return "<tr>" +
+          "<td><strong>" + id + "</strong><br><span class=\"small\">" + c.name + "</span></td>" +
+          "<td>" + reminderType + "<br><span class=\"small\">" + c.warning + "</span></td>" +
+          "<td><span class=\"badge orange\">Due now</span><br><span class=\"small\">Waiting " + c.reminderDays + " days</span></td>" +
+          "<td><button class=\"secondary\" onclick=\"sendAutoReminder('" + id + "')\">Send now</button></td>" +
+        "</tr>";
+      }).filter(Boolean);
+
+      body.innerHTML = rows.length ? rows.join("") : "<tr><td colspan=\"4\">No automatic reminders scheduled.</td></tr>";
+    }
+
+    function sendAutoReminder(candidateId) {
+      const c = candidateData[candidateId];
+      if (!c.comments) {
+        c.comments = [];
+      }
+
+      c.comments.push({
+        author: "System",
+        time: new Date().toISOString().slice(0, 16).replace("T", " "),
+        text: "Automatic reminder sent to " + c.owner + " for " + candidateId + "."
+      });
+
+      toast("Automatic reminder sent to " + c.owner + " (mock).");
+      if (candidateId === activeCandidateId) {
+        renderComments(candidateId);
+      }
+    }
+
+    function sendActiveReminder() {
+      sendAutoReminder(activeCandidateId);
+    }
+
+    function draftInviteFor(candidateId) {
+      activeCandidateId = candidateId;
+      const navButton = document.querySelector('nav button[data-screen="emails"]');
+      showScreen("emails", navButton);
+      document.getElementById("emailCandidate").value = candidateId;
+      document.getElementById("emailTemplatePick").value = "invite";
+      generateAiEmailDraft();
+    }
+
+    function fillTemplate(templateKey, candidateId) {
+      const template = emailTemplates[templateKey];
+      const c = candidateData[candidateId];
+      const vars = {
+        id: candidateId,
+        name: c.name,
+        role: c.role,
+        stage: c.stage,
+        owner: c.owner,
+        action: c.action
+      };
+
+      let subject = template.subject;
+      let body = template.body;
+
+      Object.keys(vars).forEach(key => {
+        const token = new RegExp("\\{\\{" + key + "\\}\\}", "g");
+        subject = subject.replace(token, vars[key]);
+        body = body.replace(token, vars[key]);
+      });
+
+      return "Subject: " + subject + "\n\n" + body;
+    }
+
+    function renderEmailTemplates() {
+      document.getElementById("templateList").innerHTML = Object.keys(emailTemplates).map(key => {
+        const t = emailTemplates[key];
+        return "<div class=\"comment\" style=\"margin-bottom:10px;\">" +
+          "<strong>" + t.name + "</strong>" +
+          "<p class=\"small\">Subject: " + t.subject + "</p>" +
+          "<button class=\"secondary\" onclick=\"pickEmailTemplate('" + key + "')\">Use template</button>" +
+        "</div>";
+      }).join("");
+    }
+
+    function populateEmailCandidateSelect() {
+      const select = document.getElementById("emailCandidate");
+      select.innerHTML = "";
+
+      Object.keys(candidateData).forEach(id => {
+        const c = candidateData[id];
+        select.add(new Option(id + " — " + c.name, id));
+      });
+    }
+
+    function pickEmailTemplate(key) {
+      document.getElementById("emailTemplatePick").value = key;
+      previewEmailTemplate();
+    }
+
+    function previewEmailTemplate() {
+      const candidateId = document.getElementById("emailCandidate").value;
+      const templateKey = document.getElementById("emailTemplatePick").value;
+      document.getElementById("emailPreview").value = fillTemplate(templateKey, candidateId);
+    }
+
+    function generateAiEmailDraft() {
+      const candidateId = document.getElementById("emailCandidate").value;
+      const templateKey = document.getElementById("emailTemplatePick").value;
+      const c = candidateData[candidateId];
+      let draft = fillTemplate(templateKey, candidateId);
+
+      draft += "\n\n--- AI additions ---\n";
+      draft += "Context: " + c.name + " is at \"" + c.stage + "\" with next action \"" + c.action + "\".\n";
+      draft += "Recommendation: " + c.recommendation + ".\n";
+      draft += "HR note: review tone and confirm facts before sending.";
+
+      document.getElementById("emailPreview").value = draft;
+      toast("AI email draft generated for " + candidateId + ".");
+    }
+
+    function populateCompareSelects(preselectA, preselectB) {
+      const role = document.getElementById("role").value;
+      const visibleIds = getVisibleCandidateIds(role);
+      const selectA = document.getElementById("compareA");
+      const selectB = document.getElementById("compareB");
+
+      if (!selectA || !selectB) {
+        return;
+      }
+
+      const currentA = preselectA || selectA.value;
+      const currentB = preselectB || selectB.value;
+
+      selectA.innerHTML = "";
+      selectB.innerHTML = "";
+
+      visibleIds.forEach(id => {
+        const label = id + " — " + candidateData[id].role;
+        selectA.add(new Option(label, id));
+        selectB.add(new Option(label, id));
+      });
+
+      if (visibleIds.length === 0) {
+        return;
+      }
+
+      selectA.value = visibleIds.includes(currentA) ? currentA : visibleIds[0];
+      const fallbackB = visibleIds.find(id => id !== selectA.value) || visibleIds[0];
+      selectB.value = visibleIds.includes(currentB) && currentB !== selectA.value ? currentB : fallbackB;
+    }
+
+    function openCompareWithActive() {
+      const role = document.getElementById("role").value;
+      const visibleIds = getVisibleCandidateIds(role);
+      const otherId = visibleIds.find(id => id !== activeCandidateId) || visibleIds[0];
+
+      populateCompareSelects(activeCandidateId, otherId);
+
+      const navButton = document.querySelector('nav button[data-screen="compare"]');
+      showScreen("compare", navButton);
+      renderCompare();
+    }
+
+    function renderCompare() {
+      const role = document.getElementById("role").value;
+      const idA = document.getElementById("compareA").value;
+      const idB = document.getElementById("compareB").value;
+      const warningEl = document.getElementById("compareWarning");
+      const headEl = document.getElementById("compareHead");
+      const bodyEl = document.getElementById("compareBody");
+
+      if (!idA || !idB) {
+        return;
+      }
+
+      if (idA === idB) {
+        warningEl.style.display = "block";
+        warningEl.innerText = "Select two different candidates to compare.";
+        headEl.innerHTML = "";
+        bodyEl.innerHTML = "";
+        return;
+      }
+
+      warningEl.style.display = "none";
+
+      const a = candidateData[idA];
+      const b = candidateData[idB];
+
+      headEl.innerHTML =
+        "<tr>" +
+          "<th class=\"label\">Field</th>" +
+          "<th class=\"compare-header\">" + idA + "<br><span class=\"small\">" + a.role + "</span></th>" +
+          "<th class=\"compare-header\">" + idB + "<br><span class=\"small\">" + b.role + "</span></th>" +
+        "</tr>";
+
+      const rows = [
+        { label: "Role", a: a.role, b: b.role },
+        { label: "Stage", a: a.stage, b: b.stage },
+        { label: "Experience", a: a.experience, b: b.experience },
+        { label: "Technical skills", a: a.technical + " / 5", b: b.technical + " / 5", numA: a.technical, numB: b.technical, numeric: true, higherBetter: true },
+        { label: "Communication", a: a.communication + " / 5", b: b.communication + " / 5", numA: a.communication, numB: b.communication, numeric: true, higherBetter: true },
+        { label: "Seniority fit", a: a.seniority, b: b.seniority },
+        { label: "Recommendation", a: a.recommendation, b: b.recommendation },
+        { label: "LinkedIn", a: a.linkedinUrl ? "Linked" : a.linkedin, b: b.linkedinUrl ? "Linked" : b.linkedin },
+        { label: "CV", a: a.cv, b: b.cv },
+        { label: "Strengths", a: a.strengths, b: b.strengths },
+        { label: "Concerns", a: a.concerns, b: b.concerns },
+        { label: "Next action", a: a.action, b: b.action }
+      ];
+
+      if (role === "hr") {
+        rows.push(
+          { label: "Salary expectations", a: a.salary, b: b.salary, hrOnly: true },
+          { label: "Private HR notes", a: a.hrNotes, b: b.hrNotes, hrOnly: true }
+        );
+      }
+
+      bodyEl.innerHTML = rows.map(row => {
+        let classA = "";
+        let classB = "";
+
+        if (row.a !== row.b) {
+          classA = "diff";
+          classB = "diff";
+        }
+
+        if (row.numeric && row.higherBetter) {
+          if (row.numA > row.numB) {
+            classA = "better";
+            classB = "weaker";
+          } else if (row.numB > row.numA) {
+            classA = "weaker";
+            classB = "better";
+          }
+        }
+
+        return "<tr>" +
+          "<td class=\"label\">" + row.label + "</td>" +
+          "<td class=\"" + classA + "\">" + row.a + "</td>" +
+          "<td class=\"" + classB + "\">" + row.b + "</td>" +
+        "</tr>";
+      }).join("");
+
+      document.getElementById("compareOutput").innerText = "AI comparison summary will appear here.";
+    }
+
+    function generateCompareSummary() {
+      const idA = document.getElementById("compareA").value;
+      const idB = document.getElementById("compareB").value;
+
+      if (idA === idB) {
+        toast("Pick two different candidates first.");
+        return;
+      }
+
+      const a = candidateData[idA];
+      const b = candidateData[idB];
+
+      let summary =
+        "Comparison of " + idA + " and " + idB + ":\n\n";
+
+      if (a.role === b.role) {
+        summary +=
+          "Both candidates apply for " + a.role + ". " +
+          idA + " is at \"" + a.stage + "\" with technical score " + a.technical + "/5. " +
+          idB + " is at \"" + b.stage + "\" with technical score " + b.technical + "/5.\n\n";
+      } else {
+        summary +=
+          idA + " (" + a.role + ") and " + idB + " (" + b.role + ") target different roles, so compare fit separately.\n\n";
+      }
+
+      if (a.technical > b.technical) {
+        summary += "- " + idA + " scores higher on technical skills.\n";
+      } else if (b.technical > a.technical) {
+        summary += "- " + idB + " scores higher on technical skills.\n";
+      } else {
+        summary += "- Technical scores are equal.\n";
+      }
+
+      if (a.communication > b.communication) {
+        summary += "- " + idA + " has stronger communication feedback.\n";
+      } else if (b.communication > a.communication) {
+        summary += "- " + idB + " has stronger communication feedback.\n";
+      }
+
+      summary +=
+        "\nRecommendation:\n" +
+        idA + ": " + a.recommendation + "\n" +
+        idB + ": " + b.recommendation + "\n\n" +
+        "HR should validate missing data and confirm next steps before sharing externally.";
+
+      document.getElementById("compareOutput").innerText = summary;
+      toast("AI comparison generated. HR approval still required.");
+    }
+
+    function generateSummary() {
+      const summaries = {
+        "C-104": "C-104 is an AI Engineer candidate currently in HR Screening. The candidate has been waiting 5 days, so HR should send an interview invite or update.",
+        "C-117": "C-117 is a Consultant candidate blocked by missing technical feedback. The next action is to remind the interviewer and prepare a candidate update.",
+        "C-123": "C-123 is a Project Manager candidate at Final Interview stage. The hiring manager should confirm the decision.",
+        "C-131": "C-131 is an AI Engineer candidate with technical feedback completed, but the feedback is unclear and needs HR review.",
+        "C-145": "C-145 is a Data Analyst candidate on hold. Candidate may be useful for a future role.",
+        "C-160": "C-160 is an AI Engineer candidate rejected for current seniority, but should be stored for future mid-level opportunities."
+      };
+
+      document.getElementById("aiOutput").innerText = summaries[activeCandidateId];
+    }
+
+    function detectMissingData() {
+      const candidate = candidateData[activeCandidateId];
+      let output = "Data check complete:\n";
+
+      if (candidate.linkedin === "Missing" || !candidate.linkedinUrl) {
+        output += "- LinkedIn profile is missing.\n";
+      }
+
+      if (candidate.cv !== "Attached") {
+        output += "- CV is missing.\n";
+      }
+
+      if (candidate.linkedinUrl && candidate.cv === "Attached") {
+        output += "- No major missing data found.\n";
+      }
+
+      output += "- HR should review before moving to the next stage.";
+
+      document.getElementById("aiOutput").innerText = output;
+    }
+
+    function draftEmail() {
+      const templateKey = document.getElementById("emailTemplate").value;
+      document.getElementById("aiOutput").innerText = fillTemplate(templateKey, activeCandidateId);
+      toast("AI email draft generated from template.");
+    }
+
+    function cleanFeedback() {
+      document.getElementById("cleanedFeedback").value =
+        "The candidate shows strong Python skills and experience with machine learning libraries. Production AI experience is unclear and should be validated further. Communication was acceptable. Recommended fit: mid-level rather than senior.";
+      toast("AI feedback summary generated. Human approval is still required.");
+    }
+
+    function managerSummary() {
+      document.getElementById("managerOutput").innerText =
+        "There are 3 AI Engineer candidates visible in the current pipeline. C-104 is still in HR Screening and needs an interview invite. C-131 completed technical interview but feedback needs review. C-160 was rejected for current seniority but may be useful for a future mid-level AI Engineer role.";
+    }
+
+    function toast(message) {
+      const toastEl = document.getElementById("toast");
+      toastEl.innerText = message;
+      toastEl.style.display = "block";
+
+      setTimeout(() => {
+        toastEl.style.display = "none";
+      }, 2600);
+    }
+
+    applyRolePermissions();
+    populateProfileCandidateSelect();
+    populateCompareSelects("C-131", "C-160");
+    renderCompare();
+    renderCandidateDatabase();
+    renderAutomaticReminders();
+    renderEmailTemplates();
+    populateEmailCandidateSelect();
+    applyPipelineFilter();
+  </script>
+</body>
+</html>
